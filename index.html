@@ -1,102 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Widget | Extensions Demo</title>
-  <style>
-    body {
-      background-color: #f9f9f9;
-    }
-    #flat-chat {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    #confetti-canvas {
-      position: fixed;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget | Extensions Demo</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        #flat-chat {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #confetti-canvas {
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
-  <div id="flat-chat"></div>
-  <div id="voiceflow-chat-frame"></div>
-  
-  <!-- Confetti Script -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  
-  <!-- Extensions and Voiceflow Chat Widget -->
-  <script type="module">
-    import {
-      DisableInputExtension,
-      VideoExtension,
-      TimerExtension,
-      FormExtension,
-      MapExtension,
-      FileUploadExtension,
-      KBUploadExtension,
-      DateExtension,
-      ConfettiExtension,
-      MatrixEffectExtension,
-      MultiSelectExtension,
-      DateTimeExtension,
-      MenuExtension,
-      FeedbackExtension,
-      ContactFormExtension,
-      DateTimeGuestExtension
-    } from './extensions.js';
+    <canvas id="confetti-canvas"></canvas>
+    <div id="flat-chat"></div>
+    <div id="voiceflow-chat-frame"></div>
 
-    (function (d, t) {
-      var v = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      v.onload = function () {
-        window.voiceflow.chat.load({
-          verify: { projectID: '678aa3e8709c04e6f3795f8a' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-          user: {
-            name: 'Demo User',
-          },
-          render: {
-            mode: 'overlay',
-          },
-          autostart: true,
-          allowDangerousHTML: true,
-          assistant: {
-            extensions: [
-              DisableInputExtension,
-              VideoExtension,
-              TimerExtension,
-              FormExtension,
-              MapExtension,
-              FileUploadExtension,
-              KBUploadExtension,
-              DateExtension,
-              ConfettiExtension,
-              MatrixEffectExtension,
-              MultiSelectExtension,
-              DateTimeExtension,
-              MenuExtension,
-              FeedbackExtension,
-              ContactFormExtension,
-              DateTimeGuestExtension
-            ],
-          },
+    <!-- Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <!-- Extensions and Voiceflow Chat Widget -->
+    <script type="module">
+        import {
+            DisableInputExtension,
+            VideoExtension,
+            TimerExtension,
+            FormExtension,
+            MapExtension,
+            FileUploadExtension,
+            KBUploadExtension,
+            DateExtension,
+            ConfettiExtension,
+            MatrixEffectExtension,
+            MultiSelectExtension,
+            DateTimeExtension,
+            MenuExtension,
+            FeedbackExtension,
+            ContactFormExtension,
+            DateTimeGuestExtension
+        } from './extensions.js';
+
+        (function(d, t) {
+            var v = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+
+            v.onload = function() {
+                window.voiceflow.chat.load({
+                    verify: {
+                        projectID: '678aa3e8709c04e6f3795f8a'
+                    },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production',
+                    assistant: {
+                        stylesheet: "chatagentstyle.css",
+                    },
+                    user: {
+                        name: 'Demo User',
+                    },
+                    render: {
+                        mode: 'overlay',
+                    },
+                    autostart: true,
+                    allowDangerousHTML: true,
+                    extensions: [
+                        DisableInputExtension,
+                        VideoExtension,
+                        TimerExtension,
+                        FormExtension,
+                        MapExtension,
+                        FileUploadExtension,
+                        KBUploadExtension,
+                        DateExtension,
+                        ConfettiExtension,
+                        MatrixEffectExtension,
+                        MultiSelectExtension,
+                        DateTimeExtension,
+                        MenuExtension,
+                        FeedbackExtension,
+                        ContactFormExtension,
+                        DateTimeGuestExtension
+                    ],
+                }).then(() => {
+                    window.voiceflow.chat.proactive.push({ 
+            type: 'text', 
+            payload: { 
+                message: 'Welcome to QPQ! How can I help?' 
+            } 
         });
-      };
-      v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-      v.type = 'text/javascript';
-      s.parentNode.insertBefore(v, s);
-    })(document, 'script');
-  </script>
+    });
+}
+
+            v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+            v.type = 'text/javascript';
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+    </script>
 </body>
 </html>

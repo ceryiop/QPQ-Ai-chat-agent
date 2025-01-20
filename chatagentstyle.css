@@ -1,13 +1,22 @@
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
 .c-bQoszf {
-    display: flex
-;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: var(--radii-round);
-    background-color: #060300;
+    background-color: #060300;  /* No change to background color */
     transition: background-color 150ms, box-shadow 150ms;
     height: var(--sizes-xl);
     width: var(--sizes-xl);
     border: 1px solid var(--colors-shadow4);
     box-shadow: 0 2px 19px #b97a05, 0 2px 24px #726655;
+    
+    animation: bounce 1s ease infinite; /* Bouncing animation added */
 }

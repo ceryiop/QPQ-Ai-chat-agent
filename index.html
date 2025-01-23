@@ -14,11 +14,10 @@
       position: absolute;
       top: 0;
       left: 0;
-
     }
     #confetti-canvas {
       position: fixed;
-      z-index: 999;
+      z-index: 9999; /* Increased z-index */
       top: 0;
       left: 0;
       width: 100vw;
@@ -31,11 +30,8 @@
   <canvas id="confetti-canvas"></canvas>
   <div id="flat-chat"></div>
   <div id="voiceflow-chat-frame"></div>
-  
-  <!-- Confetti Script -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  
-  <!-- Extensions and Voiceflow Chat Widget -->
+
+  <!-- Voiceflow Chat Widget -->
   <script type="module">
     import {
       DisableInputExtension,
@@ -46,7 +42,7 @@
       FileUploadExtension,
       KBUploadExtension,
       DateExtension,
-      ConfettiExtension,
+      ConfettiExtension, // Updated extension
       MatrixEffectExtension,
       MultiSelectExtension,
       DateTimeExtension,
@@ -65,7 +61,7 @@
           url: 'https://general-runtime.voiceflow.com',
           versionID: 'production',
           assistant: {
-          stylesheet: "chatagentstyle.css",
+            stylesheet: "chatagentstyle.css",
           },
           user: {
             name: 'Demo User',
@@ -85,7 +81,7 @@
               FileUploadExtension,
               KBUploadExtension,
               DateExtension,
-              ConfettiExtension,
+              ConfettiExtension, // Fixed confetti
               MatrixEffectExtension,
               MultiSelectExtension,
               DateTimeExtension,
@@ -93,22 +89,24 @@
               FeedbackExtension,
               ContactFormExtension,
               DateTimeGuestExtension
-              ],
+            ],
           }
-            }).then(() => {
-                    window.voiceflow.chat.proactive.push({ 
-                        type: 'text', 
-                        payload: { 
-                            message: 'Welcome to QPQ! How can I help?' 
-                        } 
-                    });
-                });
-            };
+        }).then(() => {
+          window.voiceflow.chat.proactive.push({ 
+            type: 'text', 
+            payload: { 
+              message: 'Welcome to QPQ! How can I help?' 
+            } 
+          });
+        });
+      };
+      v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+      v.type = 'text/javascript';
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
 
-            v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-            v.type = 'text/javascript';
-            s.parentNode.insertBefore(v, s);
-        })(document, 'script');
-    </script>
+  <!-- Confetti Script MUST COME AFTER VOICEFRAME CONTAINER -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </body>
 </html>

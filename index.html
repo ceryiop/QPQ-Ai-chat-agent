@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -57,7 +57,7 @@
           s = d.getElementsByTagName(t)[0];
       v.onload = function () {
         window.voiceflow.chat.load({
-          verify: { projectID: '673a1cf779d83ac8ed176431' },
+          verify: { projectID: '678aa3e8709c04e6f3795f8a' },
           url: 'https://general-runtime.voiceflow.com',
           versionID: 'production',
           assistant: {
@@ -95,12 +95,12 @@
           window.voiceflow.chat.proactive.push({ 
             type: 'text', 
             payload: { 
-              message: 'Welcome to Gen Agency! How can I help?' 
+              message: 'Welcome to QPQ! How can I help?' 
             } 
           });
         });
       };
-      v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+      v.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs'; // Updated source
       v.type = 'text/javascript';
       s.parentNode.insertBefore(v, s);
     })(document, 'script');
